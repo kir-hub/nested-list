@@ -23,7 +23,7 @@
 
 4. Запускаем сервис Node + Express + MongoDB в фоновом режиме
    
-   ```sudo docker-compose up -d```
+   ```docker-compose up -d```
 
 После выполнения данной команды приложение будет доступно по адресу **localhost:9000**, а база данных по адресу **localhost:27017**
 
