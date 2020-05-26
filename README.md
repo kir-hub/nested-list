@@ -34,7 +34,7 @@
    
    ```docker-compose build api && docker-compose restart api```
 
-При возникновении ошибки сборки выполнить комманду из под суперпользователя
+3. При возникновении ошибки сборки выполнить комманду из под суперпользователя
     
     ```sudo docker-compose build api && docker-compose restart api```
     
