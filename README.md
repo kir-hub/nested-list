@@ -1,4 +1,4 @@
-**# Node + Express + MongoDB template
+# Node + Express + MongoDB template
 
 Заготовка для создания проектов на связке Express + MongoDB
 
