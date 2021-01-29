@@ -21,8 +21,8 @@ services:
     image: mongo:latest
     restart: always
     container_name: express_mongo_db_1
-    volumes:
-      - ./db_mongo:/data/db
+    # volumes:
+    #   - ./db_mongo:/data/db
     ports:
       - 27017:27017
 
