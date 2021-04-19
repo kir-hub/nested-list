@@ -1,0 +1,17 @@
+<h2>notes</h2>
+
+{{#if notes.length}}
+<ul>
+    {{#each notes}}
+        <li>
+            <label>
+                
+                {{title}}
+            </label>
+        </li>
+    {{/each}}
+</ul>
+
+{{else}}
+<p>no notes</p>
+{{/if}}

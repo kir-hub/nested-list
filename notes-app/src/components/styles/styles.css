@@ -1,0 +1,55 @@
+.delete-sublist {
+    margin: 10px;
+    color: red;
+    margin-left: 200px;
+  }
+  .remove-sublist {
+    margin-right: -225px;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  .main {
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center */
+    word-wrap: break-word;
+  }
+  
+  .main > button {
+    word-wrap: break-word;
+  }
+  
+  .delete-btn,
+  .navbar {
+    display: flex;
+  }
+  
+  .ul-container > li {
+  }
+  
+  .sublist-div {
+    margin: 5px;
+    padding: 5px;
+    background: #c4c4c4;
+  }
+  
+  .delete-sublist {
+    margin: 10px;
+    color: red;
+    margin-left: 200px;
+  }
+  .remove-sublist {
+    display: flex;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  .notelist > li {
+    border: 1px solid black;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
