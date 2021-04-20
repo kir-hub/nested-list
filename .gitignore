@@ -39,3 +39,4 @@ package-lock.json
 db_mongo
 # IDE
 .idea
+.vscode

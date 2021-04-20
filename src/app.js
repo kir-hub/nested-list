@@ -9,8 +9,11 @@ import Item from './models/item';
 import config from 'config';
 import db from './db/db';
 import routes from './routes';
+import cors from 'cors'
 
 const app = express();
+
+app.options('*', cors())
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
