@@ -3,10 +3,6 @@ import Input from "./Input";
 import {getNestNotes, addNote, deleteNote} from '../utils/api/api'
 import "./styles/styles.css";
 
-
-
-
-
 export default function Note(props) {
   const {
     title,
@@ -32,7 +28,7 @@ export default function Note(props) {
 
   const fetchNotes = async()=>{
     try {
-      const newNotes = await getNestNotes()//getNestedNotes
+      const newNotes = await getNestNotes()
       console.log(newNotes.data);
       setList([...newNotes.data.filter((item) =>item.parentId === id )])
       
@@ -42,9 +38,9 @@ export default function Note(props) {
   }
   console.log(list);
 
-  // useEffect(()=>{
-  //   fetchNotes()
-  // },[])
+  useEffect(()=>{
+    fetchNotes()
+  },[])
 
   // добавляет вложенный список
   const addSublist = (value) => {
@@ -64,15 +60,28 @@ export default function Note(props) {
   const removeList = () => {
     if (deleteList) {
       deleteList(index);
+      rmAll()
     } else {
       deleteSublist(index);
     }
   };
 
+  const rmAll =()=>{
+    const newList = [...list];
+    console.log(list.length > 0);
+    if(list.length > 0){
+      for(let i =0; i<= newList.length; i++){
+      const sublistToDolete = newList.splice(i, 1)[0];
+      deleteNote(sublistToDolete._id)
+      }
+    }
+  }
+
   // удаляет вложенный список
   const deleteSublist = (index) => {
     const newList = [...list];
-    newList.splice(index, 1);
+    const sublistToDolete = newList.splice(index, 1)[0];
+    deleteNote(sublistToDolete._id)
     setList(newList);
   };
 
@@ -130,6 +139,7 @@ export default function Note(props) {
           {list.map((item, index) => (
             <li key={item._id}>
               <Note isParentId={true} title={item.title} id={item._id}/>
+              
             </li>
           ))}
         </ul>

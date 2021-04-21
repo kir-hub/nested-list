@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Input from "./Input";
 import Note from "./Note";
-import {getNotes, addNote, deleteNote} from '../utils/api/api'
+import {getNotes, addNote, deleteNote, moveNote} from '../utils/api/api'
 import "./styles/styles.css";
 
 export default function NoteList() {
@@ -18,7 +18,7 @@ export default function NoteList() {
 
   const createNote = async(title)=>{
     try {
-      const newNote = await addNote(title)
+      const newNote = await addNote(title,null,list.length)
       console.log(newNote);
     } catch (error) {
       console.log(error);
@@ -27,7 +27,7 @@ export default function NoteList() {
 
     useEffect(()=>{
     //   createNote('note title', ) 
-    deleteNote('607ec809073fe704eeed4968')
+    // deleteNote('607ec809073fe704eeed4968')
 
     fetchNotes()
     console.log(list);
@@ -44,7 +44,7 @@ export default function NoteList() {
       },
       ...list
     ];
-    createNote(newList[0].title, date)
+    createNote(newList[0].title)
     fetchNotes()
   };
 
@@ -58,8 +58,12 @@ export default function NoteList() {
   const moveUp = (index) => {
     const newList = [...list];
     const movingItem = newList.splice(index, 1)[0];
-    newList.splice(index - 1, 0, movingItem);
-    setList(newList);
+    moveNote(movingItem._id,  newList[index - 1]._id,  )
+    console.log('mv item', movingItem.title);
+    fetchNotes()
+
+    // newList.splice(index - 1, 0, movingItem);
+    // setList(newList);
   };
 
   const moveDown = (index) => {

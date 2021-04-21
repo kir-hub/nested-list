@@ -9,8 +9,14 @@ const NoteSchema = new Schema({
         type: String,
         required: false
     },
+    position:{
+        type: Number,
+        required: false
+    }
     
     
 })
+
+
 
 module.exports = model('Note', NoteSchema)
