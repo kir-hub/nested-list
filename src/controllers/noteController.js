@@ -37,13 +37,16 @@ exports.create = async(req, res) =>{
 
 exports.remove = async(req, res)=>{
     try {
-        const noteToDel = await Note.find({_id: req.body._id})
-        const removedNote = await Note.deleteOne({_id: req.body._id})
+        const noteToDel = await Note.find({_id: req.body._id})//находит элемнт по которому кликают
+        const removedNote = await Note.deleteOne({_id: req.body._id})// удаляет элемент по которому кликнули
         const removedSublist = async (rm)=>{
-            const note = await Note.find({parentId: rm[0]._id})
-            const rmNote = await Note.deleteOne({_id: note[0]._id})
-            if(note[0]._id){
-                const noteToDel = await Note.find({parentId: note[0]._id})
+            const note = await Note.find({parentId: rm[0]._id})//ищет "детей" элемента по которому кликнули
+            const rmNote = await Note.deleteOne({_id: note[0]._id})//удаляет "детей" элемента по которому кликнули
+            const sameAsPrevious = await Note.deleteOne({parentId: rm[0]._id})
+            if(note[0]._id){ //если есть вложенные элементы
+                const noteToDel = await Note.find({parentId: note[0]._id})//найти вложенные элементы у "детей"
+                const deleteNote = await Note.deleteOne({parentId: note[0]._id})
+                
                 await removedSublist(noteToDel) 
             } }
         await removedSublist(noteToDel)
