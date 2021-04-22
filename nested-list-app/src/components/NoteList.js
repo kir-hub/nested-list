@@ -18,24 +18,17 @@ export default function NoteList() {
 
   const createNote = async(title)=>{
     try {
-      const newNote = await addNote(title,null,list.length)
-      console.log(newNote);
+      await addNote(title,null)
     } catch (error) {
       console.log(error);
     }
   } 
 
     useEffect(()=>{
-    //   createNote('note title', ) 
-    // deleteNote('607ec809073fe704eeed4968')
-
-    fetchNotes()
-    console.log(list);
+      fetchNotes()
     },[])
-    console.log(list);
 
-
-  const addToList = (value) => {
+  const addToList = async (value) => {
     const date = new Date();
     const newList = [
       {
@@ -44,26 +37,22 @@ export default function NoteList() {
       },
       ...list
     ];
-    createNote(newList[0].title)
-    fetchNotes()
+    await createNote(newList[0].title)
+    await fetchNotes()
   };
 
   const deleteList = (index) => {
     const newList = [...list];
     const listToDelete = newList.splice(index, 1)[0];
-    deleteNote(listToDelete._id)
+     deleteNote(listToDelete._id)
     setList(newList);
   };
 
   const moveUp = (index) => {
     const newList = [...list];
     const movingItem = newList.splice(index, 1)[0];
-    moveNote(movingItem._id,  newList[index - 1]._id,  )
-    console.log('mv item', movingItem.title);
-    fetchNotes()
-
-    // newList.splice(index - 1, 0, movingItem);
-    // setList(newList);
+    newList.splice(index - 1, 0, movingItem);
+    setList(newList);
   };
 
   const moveDown = (index) => {

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Input from "./Input";
 import {getNestNotes, addNote, deleteNote} from '../utils/api/api'
 import "./styles/styles.css";
-import { del } from "request";
 
 export default function Note(props) {
   const {
@@ -20,8 +19,7 @@ export default function Note(props) {
 
   const createNote = async(title, parentId)=>{
     try {
-      const newNote = await addNote(title,  parentId)
-      console.log(newNote);
+      await addNote(title,  parentId)
     } catch (error) {
       console.log(error);
     }
@@ -30,21 +28,18 @@ export default function Note(props) {
   const fetchNotes = async()=>{
     try {
       const newNotes = await getNestNotes()
-      console.log(newNotes.data);
       setList([...newNotes.data.filter((item) =>item.parentId === id )])
-      
     } catch (error) {
       console.log(error);
     }
   }
-  console.log(list);
 
   useEffect(()=>{
     fetchNotes()
   },[])
 
   // добавляет вложенный список
-  const addSublist = (value) => {
+  const addSublist = async(value) => {
     const date = new Date();
     const newList = [
       {
@@ -53,25 +48,24 @@ export default function Note(props) {
       },
       ...list
     ];
-    createNote(newList[0].title, id)
-    fetchNotes()
+    await createNote(newList[0].title, id)
+    await fetchNotes()
     // setList(newList);
   };
   // удаляет элемент списка
-  const removeList = () => {
+  const removeList =  () => {
     if (deleteList) {
-      deleteList(index);
+       deleteList(index);
       rmAll()
     } else {
       deleteSublist(index);
-      rmAll()
+       rmAll()
 
     }
   };
 
   const rmAll =()=>{
     const newList = [...list];
-    console.log(list);
     if(list.length > 0){
       for(let i =0; i<= newList.length; i++){
       const sublistToDolete = newList.splice(i, 1)[0];
