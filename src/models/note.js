@@ -9,8 +9,8 @@ const NoteSchema = new Schema({
         type: String,
         required: false
     },
-    position:{
-        type: Number,
+    list:{
+        type: Array,
         required: false
     }
     

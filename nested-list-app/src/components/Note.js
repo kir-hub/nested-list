@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Input from "./Input";
 import {getNestNotes, addNote, deleteNote} from '../utils/api/api'
 import "./styles/styles.css";
+import { del } from "request";
 
 export default function Note(props) {
   const {
@@ -63,12 +64,14 @@ export default function Note(props) {
       rmAll()
     } else {
       deleteSublist(index);
+      rmAll()
+
     }
   };
 
   const rmAll =()=>{
     const newList = [...list];
-    console.log(list.length > 0);
+    console.log(list);
     if(list.length > 0){
       for(let i =0; i<= newList.length; i++){
       const sublistToDolete = newList.splice(i, 1)[0];
@@ -138,7 +141,7 @@ export default function Note(props) {
         <ul className="ul-container">
           {list.map((item, index) => (
             <li key={item._id}>
-              <Note isParentId={true} title={item.title} id={item._id}/>
+              <Note isParentId={true} title={item.title} id={item._id} />
               
             </li>
           ))}
