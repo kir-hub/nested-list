@@ -8,7 +8,7 @@ export default function Input(props) {
 
   const textHandler = () => {
     setText(text);
-    onAdd(text);
+    onAdd(text); 
     setText("");
   };
   const onChangeHandler = useCallback((e) => {

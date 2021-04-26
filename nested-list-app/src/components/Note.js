@@ -56,10 +56,10 @@ export default function Note(props) {
   const removeList =  () => {
     if (deleteList) {
        deleteList(index);
-      rmAll()
+      // rmAll()
     } else {
       deleteSublist(index);
-       rmAll()
+      //  rmAll()
 
     }
   };
@@ -123,18 +123,21 @@ export default function Note(props) {
         ) : (
           ""
         )}
-        {list.length ? (
-          ""
-        ) : (
+        {
           <Input
             onAdd={addSublist}
             btnTitle={list.length ? "add " : "add sublist"}
           />
-        )}
+          
+        }<hr/>
 
         <ul className="ul-container">
           {list.map((item, index) => (
+            
             <li key={item._id}>
+              <button className="remove-sublist" onClick={deleteSublist}>
+            remove sublists
+          </button>
               <Note isParentId={true} title={item.title} id={item._id} />
               
             </li>
