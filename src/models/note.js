@@ -9,12 +9,6 @@ const NoteSchema = new Schema({
         type: String,
         required: false
     },
-    list:{
-        type: Array,
-        required: false
-    }
-    
-    
 })
 
 
